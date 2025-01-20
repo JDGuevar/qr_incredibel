@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:qr_scan/screens/home_screen.dart';
-import 'package:qr_scan/screens/mapa_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_incredibel/providers/scan_list_provider.dart';
+import 'package:qr_incredibel/providers/ui_provider.dart';
+import 'package:qr_incredibel/screens/home_screen.dart';
+import 'package:qr_incredibel/screens/mapa_screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (_) => UiProvider()),
+    ChangeNotifierProvider(create: (_) => ScanListProvider()),
+  ],
+  child: MyApp(),
+));
 
 class MyApp extends StatelessWidget {
   @override
