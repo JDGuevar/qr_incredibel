@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_incredibel/models/scan_model.dart';
-import 'package:qr_incredibel/providers/db_provider.dart';
 import 'package:qr_incredibel/providers/scan_list_provider.dart';
 import 'package:qr_incredibel/providers/ui_provider.dart';
 import 'package:qr_incredibel/screens/screens.dart';
