@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_incredibel/models/scan_model.dart';
-import 'package:qr_incredibel/providers/db_provider.dart';
 import 'package:qr_incredibel/providers/scan_list_provider.dart';
+import 'package:qr_incredibel/screens/qr_scanner_screen.dart';
+import 'package:qr_incredibel/utils/utils.dart';
 
 class ScanButton extends StatelessWidget {
   const ScanButton({Key? key}) : super(key: key);
@@ -14,14 +15,24 @@ class ScanButton extends StatelessWidget {
       child: const Icon(
         Icons.filter_center_focus,
       ),
-      onPressed: () {
+      onPressed: () async {
         print('Botó polsat!');
 
-        String scan = 'geo://www.google.com';
-      
-        final ScanListProvider scanListProvider =
-            Provider.of<ScanListProvider>(context, listen: false);
-        scanListProvider.nuevoScan(scan);
+        // Abre el escáner de código QR
+        final String? scan = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const QRScannerScreen(),
+          ),
+        );
+
+        if (scan != null) {
+          final ScanListProvider scanListProvider =
+              Provider.of<ScanListProvider>(context, listen: false);
+          ScanModel nuevo = ScanModel(valor: scan);
+          scanListProvider.nuevoScan(scan);
+          launchURL(context, nuevo);
+        }
       },
     );
   }

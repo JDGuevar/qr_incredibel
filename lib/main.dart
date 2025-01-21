@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_incredibel/providers/scan_list_provider.dart';
 import 'package:qr_incredibel/providers/ui_provider.dart';
